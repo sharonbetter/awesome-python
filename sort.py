@@ -15,7 +15,9 @@
 """
 
 def sort_blocks():
+    
     # First, we load the current README into memory
+    
     with open('README.md', 'r') as read_me_file:
         read_me = read_me_file.read()
 
@@ -30,8 +32,8 @@ def sort_blocks():
 
     # Sorting the libraries
     inner_blocks = sorted(blocks[0].split('##'))
-    for i in range(1, len(inner_blocks)):
-        if inner_blocks[i][0] != '#':
+    for i in range(0, len(inner_blocks)):
+        if inner_blocks[i][1] != '#':
             inner_blocks[i] = '##' + inner_blocks[i]
     inner_blocks = ''.join(inner_blocks)
 
@@ -70,7 +72,7 @@ def main():
     with open('README.md', 'w+') as sorted_file:
         # Then all of the blocks are sorted individually
         blocks = [
-            ''.join(sorted(block, key=str.lower)) for block in blocks
+            ''.join(sorted(block, key=str.upper)) for block in blocks
         ]
         # And the result is written back to README.md
         sorted_file.write(''.join(blocks))
